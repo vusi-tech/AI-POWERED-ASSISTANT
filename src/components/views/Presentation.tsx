@@ -16,9 +16,11 @@ import {
   Maximize2,
   Minimize2,
   Search,
+  Download,
 } from 'lucide-react';
 import type { View } from '@/types';
 import { Disclaimer } from '@/components/ui/Shared';
+import { downloadPresentation } from '@/lib/generatePptx';
 
 interface PresentationProps {
   onNavigate: (view: View) => void;
@@ -36,6 +38,18 @@ interface Slide {
 export function Presentation({ onNavigate }: PresentationProps) {
   const [current, setCurrent] = useState(0);
   const [fullscreen, setFullscreen] = useState(false);
+  const [downloading, setDownloading] = useState(false);
+
+  const handleDownload = async () => {
+    setDownloading(true);
+    try {
+      await downloadPresentation();
+    } catch {
+      // ignore download errors
+    } finally {
+      setDownloading(false);
+    }
+  };
 
   const slides: Slide[] = [
     {
@@ -526,6 +540,14 @@ export function Presentation({ onNavigate }: PresentationProps) {
             <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">{slide.label}</span>
           </div>
           <div className="flex items-center gap-3">
+            <button
+              onClick={handleDownload}
+              disabled={downloading}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-600 text-white text-xs font-medium hover:bg-brand-700 transition-colors disabled:opacity-50"
+            >
+              <Download className="w-3.5 h-3.5" />
+              {downloading ? 'Generating...' : 'Download .pptx'}
+            </button>
             <span className="text-xs text-slate-500 font-mono">
               {String(current + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
             </span>
