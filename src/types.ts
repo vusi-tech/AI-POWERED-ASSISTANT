@@ -4,7 +4,8 @@ export type View =
   | 'meeting'
   | 'tasks'
   | 'research'
-  | 'chat';
+  | 'chat'
+  | 'presentation';
 
 export interface EmailInput {
   topic: string;

@@ -8,6 +8,7 @@ import { MeetingSummarizer } from '@/components/views/MeetingSummarizer';
 import { TaskPlanner } from '@/components/views/TaskPlanner';
 import { ResearchAssistant } from '@/components/views/ResearchAssistant';
 import { Chatbot } from '@/components/views/Chatbot';
+import { Presentation } from '@/components/views/Presentation';
 
 const viewMeta: Record<View, { title: string; subtitle: string }> = {
   dashboard: { title: 'Dashboard', subtitle: 'Your AI productivity workspace overview' },
@@ -16,6 +17,7 @@ const viewMeta: Record<View, { title: string; subtitle: string }> = {
   tasks: { title: 'AI Task Planner', subtitle: 'Prioritize and schedule your day' },
   research: { title: 'AI Research Assistant', subtitle: 'Get insights and recommendations' },
   chat: { title: 'AI Chatbot', subtitle: 'Your AI workplace assistant' },
+  presentation: { title: 'Presentation', subtitle: 'How we built BUILD IT IA' },
 };
 
 export default function App() {
@@ -48,6 +50,7 @@ export default function App() {
             {view === 'tasks' && <TaskPlanner />}
             {view === 'research' && <ResearchAssistant />}
             {view === 'chat' && <Chatbot />}
+            {view === 'presentation' && <Presentation onNavigate={setView} />}
           </div>
         </main>
       </div>

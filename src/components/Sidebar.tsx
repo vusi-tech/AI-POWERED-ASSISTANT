@@ -7,6 +7,7 @@ import {
   MessageSquare,
   Sparkles,
   X,
+  Presentation,
 } from 'lucide-react';
 import type { View } from '@/types';
 
@@ -24,6 +25,7 @@ const navItems: { id: View; label: string; icon: typeof Mail; description: strin
   { id: 'tasks', label: 'Task Planner', icon: ListChecks, description: 'Prioritize & schedule' },
   { id: 'research', label: 'Research Assistant', icon: Search, description: 'Insights & summaries' },
   { id: 'chat', label: 'AI Chatbot', icon: MessageSquare, description: 'Ask anything' },
+  { id: 'presentation', label: 'Presentation', icon: Presentation, description: 'How we built it' },
 ];
 
 export function Sidebar({ current, onNavigate, mobileOpen, onCloseMobile }: SidebarProps) {
